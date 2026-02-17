@@ -75,12 +75,12 @@ export const FinancialForm = () => {
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
           {steps.map((s) => (
-            <div key={s.id} className={`flex flex-col items-center flex-1 ${s.id === step ? 'text-indigo-600 font-semibold' : 'text-gray-400'}`}>
+            <div key={s.id} className={`flex flex-col items-center flex-1 ${s.id === step ? 'text-yellow-500 font-semibold' : 'text-gray-400'}`}>
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 mb-2 transition-colors ${
                   s.id <= step 
-                    ? 'bg-indigo-600 border-indigo-600 text-white' 
-                    : 'border-gray-300 bg-white dark:bg-slate-800'
+                    ? 'bg-yellow-500 border-yellow-500 text-slate-900' 
+                    : 'border-slate-700 bg-slate-900'
                 }`}
               >
                 {s.id < step ? <CheckCircle2 className="w-5 h-5" /> : s.id}
@@ -91,14 +91,14 @@ export const FinancialForm = () => {
         </div>
         <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-indigo-600"
+            className="h-full bg-yellow-500"
             animate={{ width: `${(step / 4) * 100}%` }}
             transition={{ type: "spring", stiffness: 100 }}
           />
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 min-h-[400px] relative overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 min-h-[400px] relative overflow-hidden border border-gray-200 dark:border-slate-800">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={step}
@@ -166,7 +166,7 @@ export const FinancialForm = () => {
         
         <button
           onClick={handleNext}
-          className="flex items-center px-8 py-3 bg-indigo-600 text-white rounded-lg font-bold shadow-lg hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all"
+          className="flex items-center px-8 py-3 bg-yellow-500 text-slate-900 rounded-lg font-bold shadow-lg hover:bg-yellow-400 hover:scale-105 active:scale-95 transition-all"
         >
           {step === 4 ? 'See Results' : 'Next'}
           <ArrowRight className="w-5 h-5 ml-2" />
@@ -185,7 +185,7 @@ const InputGroup = ({ label, value, onChange }: { label: string, value: number, 
         type="number"
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full pl-8 pr-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all" // Fixed placeholder
+        className="w-full pl-8 pr-4 py-3 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-white" // Fixed placeholder
         placeholder="0.00"
       />
     </div>

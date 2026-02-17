@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Moon, Sun, TrendingUp } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -17,9 +17,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isDark, setIsDark] = React.useState(false);
 
   React.useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDark(true);
-    }
+    // Default to dark mode for DarkPixels theme
+    setIsDark(true);
   }, []);
 
   React.useEffect(() => {
@@ -31,19 +30,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, [isDark]);
 
   return (
-    <div className={cn("min-h-screen transition-colors duration-300", isDark ? "bg-slate-900 text-white" : "bg-gray-50 text-gray-900")}>
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-slate-900/70 border-b border-gray-200 dark:border-slate-800">
+    <div className={cn("min-h-screen transition-colors duration-300", isDark ? "bg-slate-950 text-white" : "bg-gray-50 text-gray-900")}>
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-slate-950/70 border-b border-gray-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div 
-              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => navigate('/')}
             >
-              <div className="p-2 bg-indigo-600 rounded-lg">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent">
-                FinHealth
+              <img src="/logodp.jpeg" alt="DarkPixels FinHealth" className="w-10 h-10 rounded-lg object-cover ring-2 ring-yellow-500/50" />
+              <span className="text-xl font-bold bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                DarkPixels FinHealth
               </span>
             </div>
             
@@ -65,6 +62,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {children}
       </main>
+      <footer className="w-full py-6 mt-auto border-t border-gray-200 dark:border-slate-900 bg-white/70 dark:bg-slate-950/70 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Developed by <a href="https://darkpixels.in" target="_blank" rel="noopener noreferrer" className="font-semibold text-yellow-500 hover:text-yellow-400 hover:underline transition-colors">darkpixels</a>
+            </p>
+        </div>
+      </footer>
     </div>
   );
 };

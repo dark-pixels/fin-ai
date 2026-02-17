@@ -13,12 +13,12 @@ export const LandingPage = () => {
         transition={{ duration: 0.6 }}
         className="space-y-6 max-w-4xl"
       >
-        <span className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide">
+        <span className="bg-yellow-500/10 text-yellow-500 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide border border-yellow-500/20">
           Financial Health Advisor
         </span>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-4">
           Master Your Money with <br />
-          <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
             AI-Powered Insights
           </span>
         </h1>
@@ -35,7 +35,7 @@ export const LandingPage = () => {
       >
         <button
           onClick={() => navigate('/check')}
-          className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-indigo-600 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-500/30 hover:scale-105 active:scale-95"
+          className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-slate-900 transition-all duration-200 bg-yellow-400 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 hover:bg-yellow-300 shadow-lg shadow-yellow-500/30 hover:scale-105 active:scale-95"
         >
           Start Financial Check
           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -65,9 +65,9 @@ export const LandingPage = () => {
             desc: "Get an actionable 6-month plan to improve your wealth."
           },
         ].map((feature, idx) => (
-          <div key={idx} className="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/50 rounded-xl flex items-center justify-center mb-4 mx-auto">
-              <feature.icon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+          <div key={idx} className="p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-xl hover:border-yellow-500/30 transition-all group">
+            <div className="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-4 mx-auto border border-yellow-500/20">
+              <feature.icon className="w-6 h-6 text-yellow-500" />
             </div>
             <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{feature.title}</h3>
             <p className="text-gray-600 dark:text-gray-400">{feature.desc}</p>

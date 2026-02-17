@@ -13,7 +13,7 @@ interface AIChatBoxProps {
   financialResult: FinancialResult;
 }
 
-const OPENROUTER_API_KEY = "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";
+const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
 
 export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,10 +85,10 @@ export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) =>
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 p-4 bg-indigo-600 text-white rounded-full shadow-2xl hover:bg-indigo-700 transition-all hover:scale-110 active:scale-95 z-40 group"
+        className="fixed bottom-6 right-6 p-4 bg-yellow-500 text-slate-900 rounded-full shadow-2xl hover:bg-yellow-400 transition-all hover:scale-110 active:scale-95 z-40 group"
       >
         <MessageSquare className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white"></span>
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
       </button>
 
       <AnimatePresence>
@@ -97,22 +97,22 @@ export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) =>
             initial={{ opacity: 0, y: 100, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
-            className="fixed bottom-6 right-6 w-[400px] h-[600px] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl flex flex-col border border-gray-100 dark:border-slate-700 z-50 overflow-hidden"
+            className="fixed bottom-6 right-6 w-[400px] h-[600px] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col border border-gray-100 dark:border-slate-800 z-50 overflow-hidden"
           >
             {/* Header */}
-            <div className="p-4 bg-indigo-600 text-white flex justify-between items-center shrink-0">
+            <div className="p-4 bg-yellow-500 text-slate-900 flex justify-between items-center shrink-0">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-white/20 rounded-lg">
-                  <Bot className="w-5 h-5" />
+                <div className="p-2 bg-black/10 rounded-lg">
+                  <Bot className="w-5 h-5 text-slate-900" />
                 </div>
                 <div>
                   <h3 className="font-bold text-sm">FinHealth AI Assistant</h3>
-                  <p className="text-[10px] text-indigo-100 uppercase tracking-widest font-semibold">Online & Analyzing</p>
+                  <p className="text-[10px] text-slate-800 uppercase tracking-widest font-semibold opacity-70">Online & Analyzing</p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="hover:rotate-90 transition-transform p-1"
+                className="hover:rotate-90 transition-transform p-1 hover:bg-black/10 rounded-full"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -121,7 +121,7 @@ export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) =>
             {/* Messages Area */}
             <div 
               ref={scrollRef}
-              className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/50 dark:bg-slate-900/50 scroll-smooth"
+              className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/50 dark:bg-slate-950/50 scroll-smooth"
             >
               {messages.map((m, i) => (
                 <motion.div
@@ -131,13 +131,13 @@ export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) =>
                   className={`flex ${m.role === 'ai' ? 'justify-start' : 'justify-end'}`}
                 >
                   <div className={`flex max-w-[85%] space-x-2 ${m.role === 'ai' ? 'flex-row' : 'flex-row-reverse space-x-reverse'}`}>
-                    <div className={`p-2 rounded-lg shrink-0 h-fit ${m.role === 'ai' ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600' : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600'}`}>
+                    <div className={`p-2 rounded-lg shrink-0 h-fit ${m.role === 'ai' ? 'bg-yellow-500/10 text-yellow-500' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}`}>
                       {m.role === 'ai' ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                     </div>
                     <div className={`p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${
                       m.role === 'ai' 
-                        ? 'bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 rounded-tl-none' 
-                        : 'bg-indigo-600 text-white rounded-tr-none'
+                        ? 'bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 rounded-tl-none border border-gray-100 dark:border-slate-700' 
+                        : 'bg-yellow-500 text-slate-900 rounded-tr-none font-medium'
                     }`}>
                       {m.content}
                     </div>
@@ -146,14 +146,14 @@ export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) =>
               ))}
               {isLoading && (
                 <div className="flex justify-start items-center space-x-2 p-2 text-gray-400">
-                  <Loader2 className="w-4 h-4 animate-spin text-indigo-600" />
+                  <Loader2 className="w-4 h-4 animate-spin text-yellow-500" />
                   <span className="text-xs font-medium">AI is thinking...</span>
                 </div>
               )}
             </div>
 
             {/* Input Area */}
-            <div className="p-4 border-t border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 shrink-0">
+            <div className="p-4 border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 shrink-0">
               <div className="relative flex items-center">
                 <input
                   type="text"
@@ -161,12 +161,12 @@ export const AIChatBox = ({ financialData, financialResult }: AIChatBoxProps) =>
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder="Ask about your financial plan..."
-                  className="w-full pl-4 pr-12 py-3 bg-gray-100 dark:bg-slate-900 border-none rounded-xl text-sm focus:ring-2 focus:ring-indigo-600 outline-none transition-all dark:text-white"
+                  className="w-full pl-4 pr-12 py-3 bg-gray-100 dark:bg-slate-950 border-none rounded-xl text-sm focus:ring-2 focus:ring-yellow-500 outline-none transition-all dark:text-white placeholder-gray-500"
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!input.trim() || isLoading}
-                  className="absolute right-2 p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute right-2 p-2 bg-yellow-500 text-slate-900 rounded-lg hover:bg-yellow-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
                 </button>

@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: var(--color-indigo-600);
-  --color-secondary: var(--color-emerald-500);
+  --color-primary: var(--color-yellow-500);
+  --color-secondary: var(--color-amber-500);
+  --color-accent: var(--color-yellow-300);
   --font-sans: "Inter", "system-ui", "sans-serif";
 }
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 antialiased font-sans;
+    @apply bg-slate-950 text-slate-100 antialiased font-sans;
   }
 }
 
