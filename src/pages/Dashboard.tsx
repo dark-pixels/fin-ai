@@ -13,12 +13,8 @@ const COLORS = ['#ef4444', '#f59e0b', '#eab308', '#84cc16'];
 
 import { AIChatBox } from '../components/AIChatBox';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import { Download, RefreshCw } from 'lucide-react';
-
-interface AutoTablePlugin {
-  autoTable: (options: any) => void;
-}
 
 export const Dashboard = () => {
   const location = useLocation();
@@ -30,7 +26,7 @@ export const Dashboard = () => {
   const handleDownloadPDF = async () => {
     if (!result || !data) return;
 
-    const doc = new jsPDF() as jsPDF & AutoTablePlugin;
+    const doc = new jsPDF();
     const pdfWidth = doc.internal.pageSize.getWidth();
     
     // Load Logo
@@ -95,12 +91,12 @@ export const Dashboard = () => {
       ['Savings', `INR ${(result.incomeTotal - result.totalExpenses).toLocaleString()}`],
     ];
 
-    doc.autoTable({
+    autoTable(doc, {
       startY: yPos,
       head: [['Category', 'Amount']],
       body: tableData,
       theme: 'grid',
-      headStyles: { fillColor: [124, 58, 237] }, // Violet color (violet-600)
+      headStyles: { fillColor: [234, 179, 8] }, // Yellow-500
       margin: { left: 15 },
     });
 
